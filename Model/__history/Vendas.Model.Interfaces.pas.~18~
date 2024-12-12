@@ -33,7 +33,7 @@ type
     function Add(Value: iProduto): iItemVenda;
     function Remove(Value: Integer): iItemVenda;
     function SetQuantidade(Value: Double): iItemVenda;
-    function Itens: TDictionary<integer, iProduto>;
+    function Itens: TList<iProduto>;
   end;
 
 implementation

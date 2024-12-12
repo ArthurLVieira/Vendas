@@ -1,0 +1,7 @@
+unit Vendas.Model.Venda;
+
+interface
+
+implementation
+
+end.

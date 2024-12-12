@@ -5,8 +5,7 @@ uses
   Vendas.View.Principal in 'View\Vendas.View.Principal.pas' {Form1},
   Vendas.Model.Interfaces in 'Model\Vendas.Model.Interfaces.pas',
   Vendas.Model.Produto in 'Model\Vendas.Model.Produto.pas',
-  Vendas.Model.Consulta in 'Model\Vendas.Model.Consulta.pas',
-  Vendas.Model.Venda in 'Model\Vendas.Model.Venda.pas';
+  Vendas.Model.Consulta in 'Model\Vendas.Model.Consulta.pas';
 
 {$R *.res}
 

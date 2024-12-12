@@ -130,6 +130,7 @@
         <DCCReference Include="Model\Vendas.Model.Interfaces.pas"/>
         <DCCReference Include="Model\Vendas.Model.Produto.pas"/>
         <DCCReference Include="Model\Vendas.Model.Consulta.pas"/>
+        <DCCReference Include="Model\Vendas.Model.Venda.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -32,8 +32,7 @@ type
     ['{FEEDB0BF-FC29-4BF5-B580-B1E401CBABBF}']
     function Add(Value: iProduto): iItemVenda;
     function Remove(Value: Integer): iItemVenda;
-    function SetQuantidade(Value: Double): iItemVenda;
-    function Itens: TDictionary<integer, iProduto>;
+    function Itens: TList<iProduto>;
   end;
 
 implementation
