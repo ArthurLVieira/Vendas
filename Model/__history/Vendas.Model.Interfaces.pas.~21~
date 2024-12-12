@@ -20,8 +20,6 @@ type
     ['{F4C6022E-5175-490A-A067-17FCBA6F6FD7}']
     function SetID(Value: integer): iProduto;
     function GetID: integer;
-    function SetQuantidade(Value: Double): iProduto;
-    function GetQuantidade: Double;
     function Operacoes: iOperacoes;
   end;
 
@@ -37,8 +35,7 @@ type
     function Itens: TDictionary<integer, iProduto>;
     function SetQuantidade(Value: Double): iItemVenda;
     function GetQuantidade: Double;
-    function SetPrecoVenda(Value: Currency): iItemVenda;
-    function GetPrecoVenda: Currency;
+
   end;
 
 implementation

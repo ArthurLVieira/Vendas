@@ -9,10 +9,7 @@ type
   TModelVenda = class(TInterfacedObject, iItemVenda)
   private
     FLista: TDictionary<Integer, iProduto>;
-    FProduto: iProduto;
-    FQuantidade: Double;
-    FPrecoVenda: Currency;
-    procedure VerificaProdutoNaVenda;
+
   public
     constructor Create;
     destructor Destroy; override;
@@ -21,8 +18,6 @@ type
     function Remove(Value: Integer): iItemVenda;
     function Itens: TDictionary<Integer, iProduto>;
     function SetQuantidade(Value: Double): iItemVenda;
-    function SetPrecoVenda(Value: Currency): iItemVenda;
-    function GetPrecoVenda: Currency;
   end;
 
 implementation
@@ -36,9 +31,8 @@ function TModelVenda.Add(Value: iProduto): iItemVenda;
 var
   LastKey: Integer;
 begin
-  FProduto := Value;
   LastKey := FLista.Keys.ToArray[High(FLista.Keys.ToArray)];
-  FLista.Add((LastKey + 1), FProduto)
+  FLista.Add((LastKey + 1), Value)
 end;
 
 constructor TModelVenda.Create;
@@ -74,20 +68,8 @@ end;
 
 function TModelVenda.SetQuantidade(Value: Double): iItemVenda;
 begin
-  Result := Self;
-  VerificaProdutoNaVenda;
-  if Value <= FProduto.GetQuantidade then
-  begin
-    FQuantidade := Value;
-  end
-  else
-    raise Exception.Create('Quantidade insdisponivel no estoque!');
-end;
 
-procedure TModelVenda.VerificaProdutoNaVenda;
-begin
-  if not Assigned(FProduto) then
-    raise Exception.Create('Venda sem Produto!');
+
 end;
 
 end.

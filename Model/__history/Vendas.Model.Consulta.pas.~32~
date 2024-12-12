@@ -8,6 +8,7 @@ type
 
   TModelConsulta = class(TInterfacedObject, iConsulta)
   private
+    Produto: iProduto;
     FLista: TDictionary<Integer, iProduto>;
   public
     constructor Create;
@@ -25,12 +26,21 @@ uses
 
 function TModelConsulta.BuscarProdutoID(Value: Integer): iProduto;
 begin
-  if TModelProduto.New.Operacoes.Lista. then
-  
+  try
+    FLista.TryGetValue(Value, Result);
+    try
+      Produto.Operacoes.Lista.TryGetValue(Value, Result);
+    except
+      raise Exception.Create('Produto não encontrado!');
+    end;
+  finally
+    FLista.Add(Value, Result);
+  end;
 end;
 
 constructor TModelConsulta.Create;
 begin
+  Produto := TModelProduto.New;
   FLista := TDictionary<Integer, iProduto>.Create;
 end;
 

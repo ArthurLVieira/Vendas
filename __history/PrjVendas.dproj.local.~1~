@@ -7,5 +7,7 @@
     <Transaction>2024/12/11 23:34:57.000.000,C:\Users\user\Documents\GitHub\Vendas\Vendas\Unit1.pas=C:\Users\user\Documents\GitHub\Vendas\Vendas\Model\Vendas.Model.Produto.pas</Transaction>
     <Transaction>2024/12/11 23:47:38.000.311,=C:\Users\user\Documents\GitHub\Vendas\Vendas\Unit1.pas</Transaction>
     <Transaction>2024/12/11 23:48:02.000.793,C:\Users\user\Documents\GitHub\Vendas\Vendas\Model\Vendas.Model.Consulta.pas=C:\Users\user\Documents\GitHub\Vendas\Vendas\Unit1.pas</Transaction>
+    <Transaction>2024/12/12 11:59:18.865,=C:\Users\user\Documents\GitHub\Vendas\Vendas\Unit1.pas</Transaction>
+    <Transaction>2024/12/12 11:59:33.429,C:\Users\user\Documents\GitHub\Vendas\Vendas\Model\Vendas.Model.Venda.pas=C:\Users\user\Documents\GitHub\Vendas\Vendas\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

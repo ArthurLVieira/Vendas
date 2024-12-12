@@ -25,6 +25,8 @@ uses
 { TModelConsulta }
 
 function TModelConsulta.BuscarProdutoID(Value: Integer): iProduto;
+var
+  I: Integer;
 begin
   try
     FLista.TryGetValue(Value, Result);
