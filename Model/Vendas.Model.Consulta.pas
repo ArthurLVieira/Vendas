@@ -29,7 +29,7 @@ begin
   try
     FLista.TryGetValue(Value, Result);
     try
-      Produto.Operacoes.Lista.TryGetValue(Value, Result)
+      Produto.Operacoes.Lista.TryGetValue(Value, Result);
     except
       raise Exception.Create('Produto não encontrado!');
     end;

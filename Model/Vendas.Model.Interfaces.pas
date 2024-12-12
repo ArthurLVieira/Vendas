@@ -30,7 +30,9 @@ type
 
   iItemVenda = interface
     ['{FEEDB0BF-FC29-4BF5-B580-B1E401CBABBF}']
-    function Add(ID: integer; Value: iProduto): iItemVenda;
+    function Add(Value: iProduto): iItemVenda;
+    function Remove(Value: Integer): iItemVenda;
+    function Itens: TList<iProduto>;
   end;
 
 implementation
