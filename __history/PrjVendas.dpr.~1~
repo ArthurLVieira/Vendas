@@ -1,0 +1,14 @@
+program PrjVendas;
+
+uses
+  Vcl.Forms,
+  Vendas.View.Principal in 'View\Vendas.View.Principal.pas' {Form1};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

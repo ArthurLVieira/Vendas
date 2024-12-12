@@ -1,0 +1,61 @@
+unit Vendas.Model.Produto;
+
+interface
+
+uses Vendas.Model.Interfaces, System.Generics.Collections;
+
+type
+
+  TModelProduto = class(TInterfacedObject, iProduto, iOperacoes)
+  private
+    FID: Integer;
+    FLista: TDictionary<Integer, iProduto>;
+
+  public
+    constructor Create;
+    destructor Destroy; override;
+    class function New: iProduto;
+    function SetID(Value: Integer): iProduto;
+    function GetID: Integer;
+    function Operacoes: iOperacoes;
+  end;
+
+implementation
+
+uses
+  System.SysUtils;
+
+{ TModelProduto }
+
+constructor TModelProduto.Create;
+begin
+  FLista := TDictionary<Integer, iProduto>.Create;
+end;
+
+destructor TModelProduto.Destroy;
+begin
+  FreeAndNil(FLista);
+  inherited;
+end;
+
+function TModelProduto.GetID: Integer;
+begin
+  Result := FID;
+end;
+
+class function TModelProduto.New: iProduto;
+begin
+  Result := Self.Create;
+end;
+
+function TModelProduto.Operacoes: iOperacoes;
+begin
+  re
+end;
+
+function TModelProduto.SetID(Value: Integer): iProduto;
+begin
+
+end;
+
+end.

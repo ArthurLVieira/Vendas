@@ -1,0 +1,32 @@
+unit Vendas.Model.Interfaces;
+
+interface
+
+type
+
+iProduto = interface;
+
+  iOperacoes = interface
+    ['{E1EA3147-8BE7-4668-8C53-EC9CDF4476B9}']
+    function AddValue()
+  end;
+
+  iProduto = interface
+    ['{F4C6022E-5175-490A-A067-17FCBA6F6FD7}']
+    function SetID(Value: Integer): iProduto;
+    function GetID: Integer;
+    function Operacoes: iOperacoes
+  end;
+
+  iConsulta = interface
+    ['{0FB718C9-85B5-42B3-A3E3-FBACBC7921B9}']
+    function BuscarID(Value: Integer): iProduto;
+    function end;
+
+    iItemVenda = interface['{FEEDB0BF-FC29-4BF5-B580-B1E401CBABBF}']
+    function Add(ID: Integer; Value: iProduto): iItemVenda;
+  end;
+
+implementation
+
+end.
