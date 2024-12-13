@@ -22,6 +22,8 @@ type
     function GetID: integer;
     function SetQuantidade(Value: Double): iProduto;
     function GetQuantidade: Double;
+    function SetPreco(Value: Currency): iProduto;
+    function GetPreco: Currency;
     function Operacoes: iOperacoes;
   end;
 
@@ -30,14 +32,14 @@ type
     function BuscarProdutoID(Value: integer): iProduto;
   end;
 
-  iItemVenda = interface
+  iProdutoVenda = interface
     ['{FEEDB0BF-FC29-4BF5-B580-B1E401CBABBF}']
-    function Add(Value: iProduto): iItemVenda;
-    function Remove(Value: integer): iItemVenda;
+    function Add(Value: iProduto): iProdutoVenda;
+    function Remove(Value: integer): iProdutoVenda;
     function Itens: TDictionary<integer, iProduto>;
-    function SetQuantidade(Value: Double): iItemVenda;
+    function SetQuantidade(Value: Double): iProdutoVenda;
     function GetQuantidade: Double;
-    function SetPrecoVenda(Value: Currency): iItemVenda;
+    function SetPrecoVenda(Value: Currency): iProdutoVenda;
     function GetPrecoVenda: Currency;
   end;
 

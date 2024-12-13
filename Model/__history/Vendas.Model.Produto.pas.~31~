@@ -9,6 +9,8 @@ type
   TModelProduto = class(TInterfacedObject, iProduto, iOperacoes)
   private
     FID: Integer;
+    FQuantidade: Double;
+    FPreco: Currency;
     FLista: TDictionary<Integer, iProduto>;
 
   public
@@ -17,7 +19,12 @@ type
     class function New: iProduto;
     function SetID(Value: Integer): iProduto;
     function GetID: Integer;
+    function SetPreco(Value: Currency): iProduto;
+    function GetPreco: Currency;
     function Operacoes: iOperacoes;
+    function Add(Value: iProduto): iOperacoes;
+    function Lista: TDictionary<Integer, iProduto>;
+    function &End: iProduto;
   end;
 
 implementation
@@ -26,6 +33,16 @@ uses
   System.SysUtils;
 
 { TModelProduto }
+
+function TModelProduto.Add(Value: iProduto): iOperacoes;
+begin
+  FLista.Add(Value.GetID, Value);
+end;
+
+function TModelProduto.&End: iProduto;
+begin
+  Result := Self;
+end;
 
 constructor TModelProduto.Create;
 begin
@@ -43,6 +60,11 @@ begin
   Result := FID;
 end;
 
+function TModelProduto.Lista: TDictionary<Integer, iProduto>;
+begin
+  Result := FLista;
+end;
+
 class function TModelProduto.New: iProduto;
 begin
   Result := Self.Create;
@@ -56,7 +78,7 @@ end;
 function TModelProduto.SetID(Value: Integer): iProduto;
 begin
   Result := Self;
-  FID := va
+  FID := Value;
 end;
 
 end.

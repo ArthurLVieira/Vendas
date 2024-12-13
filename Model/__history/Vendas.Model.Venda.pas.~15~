@@ -6,10 +6,9 @@ uses Vendas.Model.Interfaces, System.Generics.Collections;
 
 type
 
-  TModelVenda = class(TInterfacedObject, iProdutoVenda)
+  TModelVenda = class(TInterfacedObject, iItemVenda)
   private
     FLista: TDictionary<Integer, iProduto>;
-    FListaVenda: TList<iProdutoVenda>;
     FProduto: iProduto;
     FQuantidade: Double;
     FPrecoVenda: Currency;
@@ -17,13 +16,12 @@ type
   public
     constructor Create;
     destructor Destroy; override;
-    class function New: iProdutoVenda;
-    function Add(Value: iProduto): iProdutoVenda;
-    function Remove(Value: Integer): iProdutoVenda;
+    class function New: iItemVenda;
+    function Add(Value: iProduto): iItemVenda;
+    function Remove(Value: Integer): iItemVenda;
     function Itens: TDictionary<Integer, iProduto>;
-    function SetQuantidade(Value: Double): iProdutoVenda;
-    function GetQuantidade: Double;
-    function SetPrecoVenda(Value: Currency): iProdutoVenda;
+    function SetQuantidade(Value: Double): iItemVenda;
+    function SetPrecoVenda(Value: Currency): iItemVenda;
     function GetPrecoVenda: Currency;
   end;
 
@@ -34,12 +32,12 @@ uses
 
 { TModelVenda }
 
-function TModelVenda.Add(Value: iProduto): iProdutoVenda;
+function TModelVenda.Add(Value: iProduto): iItemVenda;
 var
   LastKey: Integer;
 begin
-  Result := Self;
   FProduto := Value;
+  FPrecoVenda := FProduto.GetPreco;
   LastKey := FLista.Keys.ToArray[High(FLista.Keys.ToArray)];
   FLista.Add((LastKey + 1), FProduto);
 end;
@@ -61,24 +59,18 @@ begin
   Result := FPrecoVenda;
 end;
 
-function TModelVenda.GetQuantidade: Double;
-begin
-  Result := FQuantidade;
-end;
-
 function TModelVenda.Itens: TDictionary<Integer, iProduto>;
 begin
   Result := FLista;
 end;
 
-class function TModelVenda.New: iProdutoVenda;
+class function TModelVenda.New: iItemVenda;
 begin
   Result := Self.Create;
 end;
 
-function TModelVenda.Remove(Value: Integer): iProdutoVenda;
+function TModelVenda.Remove(Value: Integer): iItemVenda;
 begin
-  Result := Self;
   try
     FLista.Remove(Value);
   except
@@ -86,32 +78,23 @@ begin
   end;
 end;
 
-function TModelVenda.SetPrecoVenda(Value: Currency): iProdutoVenda;
+function TModelVenda.SetPrecoVenda(Value: Currency): iItemVenda;
 begin
-  Result := Self;
-  if Value.ToString <> '' then
-  begin
-    FPrecoVenda := Value
-  end
-  else
-    FPrecoVenda := FProduto.GetPreco;
+
 end;
 
-function TModelVenda.SetQuantidade(Value: Double): iProdutoVenda;
+function TModelVenda.SetQuantidade(Value: Double): iItemVenda;
 begin
   Result := Self;
   VerificaProdutoNaVenda;
-  if Value.ToString <> '' then
+  if Value.ToString = '' then
+    FQuantidade := 1;
+  if Value <= FProduto.GetQuantidade then
   begin
-    if Value <= FProduto.GetQuantidade then
-    begin
-      FQuantidade := Value;
-    end
-    else
-      raise Exception.Create('Quantidade insdisponivel no estoque!');
+    FQuantidade := Value;
   end
   else
-    FQuantidade := 1;
+    raise Exception.Create('Quantidade insdisponivel no estoque!');
 end;
 
 procedure TModelVenda.VerificaProdutoNaVenda;
