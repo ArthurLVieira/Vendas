@@ -43,6 +43,14 @@ type
     function GetPrecoVenda: Currency;
   end;
 
+  iVenda = interface
+    ['{76D64B58-235E-471D-9E70-E85267355D06}']
+    function Add(Value: iVenda): iVenda;
+    function Remove(Value: integer): iVenda;
+    function Editar(Value: integer): iVenda;
+    function Cancelar: iVenda;
+  end;
+
 implementation
 
 end.
