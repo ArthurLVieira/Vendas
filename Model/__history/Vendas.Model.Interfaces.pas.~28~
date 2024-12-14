@@ -31,7 +31,6 @@ type
 
   iConsulta = interface
     ['{0FB718C9-85B5-42B3-A3E3-FBACBC7921B9}']
-    function Add(Value: TList<iProduto>): iConsulta;
     function BuscarProdutoID(Value: Integer): iProduto;
   end;
 

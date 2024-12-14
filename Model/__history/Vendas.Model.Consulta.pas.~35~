@@ -26,13 +26,15 @@ uses
 
 function TModelConsulta.BuscarProdutoID(Value: Integer): iProduto;
 begin
-  if Produto.Operacoes.Lista.TryGetValue(Value, Result) then
+  if not FLista.TryGetValue(Value, Result) then
+  begin
 
+  end;
 end;
 
 constructor TModelConsulta.Create;
 begin
-  Produto := iProduto.New;
+  Produto := TModelProduto.New;
   FLista := TDictionary<Integer, iProduto>.Create;
 end;
 

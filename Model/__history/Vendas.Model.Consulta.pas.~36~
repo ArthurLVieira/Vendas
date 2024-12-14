@@ -8,31 +8,40 @@ type
 
   TModelConsulta = class(TInterfacedObject, iConsulta)
   private
-    Produto: iProduto;
+    Produtos: iCAdastroProduto;
+    FListaProdutos: TList<iProduto>;
     FLista: TDictionary<Integer, iProduto>;
   public
     constructor Create;
     destructor Destroy; override;
     class function New: iConsulta;
     function BuscarProdutoID(Value: Integer): iProduto;
+    function Add(Value: TList<iProduto>): iConsulta;
   end;
 
 implementation
 
 uses
-  System.SysUtils, Vendas.Model.Produto;
+  System.SysUtils, Vendas.Model.Cadastro.Produtos;
 
 { TModelConsulta }
 
+function TModelConsulta.Add(Value: TList<iProduto>): iConsulta;
+begin
+  Result := Self;
+  FListaProdutos.Add(Value);
+end;
+
 function TModelConsulta.BuscarProdutoID(Value: Integer): iProduto;
 begin
-  if not Produto.Operacoes.Lista.TryGetValue(Value, Result) then
-    raise Exception.Create('Produto não encontrado!');
+  if not FLista.TryGetValue(Value, Result) then
+  begin
+
+  end;
 end;
 
 constructor TModelConsulta.Create;
 begin
-  Produto := iProduto.New;
   FLista := TDictionary<Integer, iProduto>.Create;
 end;
 

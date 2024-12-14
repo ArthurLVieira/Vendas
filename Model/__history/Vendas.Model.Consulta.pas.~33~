@@ -25,14 +25,24 @@ uses
 { TModelConsulta }
 
 function TModelConsulta.BuscarProdutoID(Value: Integer): iProduto;
+var
+  I: Integer;
 begin
-  if Produto.Operacoes.Lista.TryGetValue(Value, Result) then
-
+  try
+    FLista.TryGetValue(Value, Result);
+    try
+      Produto.Operacoes.Lista.TryGetValue(Value, Result);
+    except
+      raise Exception.Create('Produto não encontrado!');
+    end;
+  finally
+    FLista.Add(Value, Result);
+  end;
 end;
 
 constructor TModelConsulta.Create;
 begin
-  Produto := iProduto.New;
+  Produto := TModelProduto.New;
   FLista := TDictionary<Integer, iProduto>.Create;
 end;
 

@@ -9,6 +9,7 @@ type
   TModelVenda = class(TInterfacedObject, iProdutoVenda)
   private
     FLista: TDictionary<Integer, iProduto>;
+    FListaVenda: TList<iProdutoVenda>;
     FProduto: iProduto;
     FQuantidade: Double;
     FPrecoVenda: Currency;
