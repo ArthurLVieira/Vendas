@@ -6,18 +6,17 @@ uses Vendas.Model.Interfaces, System.Generics.Collections;
 
 type
 
-  TModelProduto = class(TInterfacedObject, iProduto, iOperacoes)
+  TModelProduto = class(TInterfacedObject, iProduto)
   private
     FID: Integer;
-    FLista: TDictionary<Integer, iProduto>;
+    procedure SetID(const Value: Integer);
+    function GetID: Integer;
 
   public
     constructor Create;
     destructor Destroy; override;
     class function New: iProduto;
-    function SetID(Value: Integer): iProduto;
-    function GetID: Integer;
-    function Operacoes: iOperacoes;
+    property ID: Integer read GetID write SetID;
   end;
 
 implementation
@@ -27,14 +26,16 @@ uses
 
 { TModelProduto }
 
+{ TModelProduto }
+
 constructor TModelProduto.Create;
 begin
-  FLista := TDictionary<Integer, iProduto>.Create;
+
 end;
 
 destructor TModelProduto.Destroy;
 begin
-  FreeAndNil(FLista);
+
   inherited;
 end;
 
@@ -48,14 +49,8 @@ begin
   Result := Self.Create;
 end;
 
-function TModelProduto.Operacoes: iOperacoes;
+procedure TModelProduto.SetID(const Value: Integer);
 begin
-  Result := Self;
-end;
-
-function TModelProduto.SetID(Value: Integer): iProduto;
-begin
-  Result := Self;
   FID := Value;
 end;
 

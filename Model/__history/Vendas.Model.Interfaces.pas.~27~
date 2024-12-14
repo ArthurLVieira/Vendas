@@ -26,7 +26,7 @@ type
   iCAdastroProduto = interface
     ['{C34B34B9-A551-4532-A62F-A01293FC34CE}']
     function Add(Value: iProduto): iCAdastroProduto;
-    function Lista: TList<iProduto>;
+    function Lista: TDictionary<Integer, iProduto>;
   end;
 
   iConsulta = interface

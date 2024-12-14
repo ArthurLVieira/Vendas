@@ -9,6 +9,8 @@ type
   TModelProduto = class(TInterfacedObject, iProduto, iOperacoes)
   private
     FID: Integer;
+    FQuantidade: Double;
+    FPreco: Currency;
     FLista: TDictionary<Integer, iProduto>;
 
   public
@@ -17,6 +19,10 @@ type
     class function New: iProduto;
     function SetID(Value: Integer): iProduto;
     function GetID: Integer;
+    function SetQuantidade(Value: Double): iProduto;
+    function GetQuantidade: Double;
+    function SetPreco(Value: Currency): iProduto;
+    function GetPreco: Currency;
     function Operacoes: iOperacoes;
     function Add(Value: iProduto): iOperacoes;
     function Lista: TDictionary<Integer, iProduto>;
@@ -32,12 +38,12 @@ uses
 
 function TModelProduto.Add(Value: iProduto): iOperacoes;
 begin
-  FLista.Add(Value.FID, Value);
+  FLista.Add(Value.GetID, Value);
 end;
 
 function TModelProduto.&End: iProduto;
 begin
-
+  Result := Self;
 end;
 
 constructor TModelProduto.Create;
@@ -58,7 +64,7 @@ end;
 
 function TModelProduto.Lista: TDictionary<Integer, iProduto>;
 begin
-
+  Result := FLista;
 end;
 
 class function TModelProduto.New: iProduto;
