@@ -7,8 +7,7 @@ uses
   Vendas.Model.Produto in 'Model\Vendas.Model.Produto.pas',
   Vendas.Model.Consulta in 'Model\Vendas.Model.Consulta.pas',
   Vendas.Model.Venda in 'Model\Vendas.Model.Venda.pas',
-  Vendas.Model.Cadastro.Produtos in 'Model\Vendas.Model.Cadastro.Produtos.pas',
-  Vendas.Model.Venda.Produto in 'Model\Vendas.Model.Venda.Produto.pas';
+  Vendas.Model.Cadastro.Produtos in 'Model\Vendas.Model.Cadastro.Produtos.pas';
 
 {$R *.res}
 

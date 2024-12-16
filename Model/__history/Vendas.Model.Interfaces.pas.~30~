@@ -37,8 +37,8 @@ type
 
   iProdutoVenda = interface
     ['{FEEDB0BF-FC29-4BF5-B580-B1E401CBABBF}']
-    function SetProduto(Value: iProduto): iProdutoVenda;
-    function GetProduto: iProduto;
+    function Add(Value: iProduto): iProdutoVenda;
+    function ProdutoVenda: TDictionary<Integer, iProduto>;
     function SetQuantidade(Value: Double): iProdutoVenda;
     function GetQuantidade: Double;
     function SetPrecoVenda(Value: Currency): iProdutoVenda;
@@ -50,7 +50,7 @@ type
     function Add(Value: iProdutoVenda): iVenda;
     function Remove(Value: Integer): iVenda;
     function Editar(Value: Integer): iVenda;
-    function Clonar(Value: Integer): iVenda;
+    function Clonar(Value: integer): iVenda;
     function Cancelar: iVenda;
   end;
 
