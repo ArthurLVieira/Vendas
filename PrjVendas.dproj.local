@@ -17,6 +17,7 @@
     <File Path="Model\Vendas.Model.Produto.pas"/>
     <File Path="Model\Vendas.Model.Venda.pas"/>
     <File Path="Model\Vendas.Model.Cadastro.Produtos.pas"/>
+    <File Path="Model\Vendas.Model.Venda.Produto.pas"/>
     <File Path="View"/>
     <File Path="View\Vendas.View.Principal.pas"/>
     <File Path="View\Vendas.View.Principal.dfm"/>

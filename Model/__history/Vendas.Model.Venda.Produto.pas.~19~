@@ -10,7 +10,7 @@ type
   private
     FProdutoVenda: iProduto;
     FPrecoVenda: Currency;
-    FQuantidadeVenda: Double;
+    FQuantidade: Double;
   public
     constructor Create;
     destructor Destroy; override;
@@ -26,7 +26,7 @@ type
 implementation
 
 uses
-  System.SysUtils, Vcl.Dialogs;
+  System.SysUtils;
 
 { TModelVendaProduto }
 
@@ -35,7 +35,7 @@ begin
   FPrecoVenda := FProdutoVenda.Preco;
   if FProdutoVenda.Quantidade <= 0 then
     raise Exception.Create('Produto sem estoque!');
-  FQuantidadeVenda := 1;
+  FQuantidade := 1;
 end;
 
 destructor TModelVendaProduto.Destroy;
@@ -45,17 +45,17 @@ end;
 
 function TModelVendaProduto.GetPrecoVenda: Currency;
 begin
-  Result := FPrecoVenda;
+
 end;
 
 function TModelVendaProduto.GetProduto: iProduto;
 begin
-  Result := FProdutoVenda;
+
 end;
 
 function TModelVendaProduto.GetQuantidade: Double;
 begin
-  Result := FQuantidadeVenda;
+
 end;
 
 class function TModelVendaProduto.New: iProdutoVenda;
@@ -65,26 +65,17 @@ end;
 
 function TModelVendaProduto.SetPrecoVenda(Value: Currency): iProdutoVenda;
 begin
-  if Value.ToString <> '' then
-  begin
-    if Value < FProdutoVenda.Preco then
-      ShowMessage('Valor de venda menor que o valor do produto!');
-    FPrecoVenda := Value;
-  end;
 
 end;
 
 function TModelVendaProduto.SetProduto(Value: iProduto): iProdutoVenda;
 begin
-  FProdutoVenda := Value;
+
 end;
 
 function TModelVendaProduto.SetQuantidade(Value: Double): iProdutoVenda;
 begin
-  if Value > FProdutoVenda.Quantidade then
-    raise Exception.Create('Quantidade de venda: ' + FloatToStr(Value) +
-      ', menor que em estoque: ' + FloatToStr(FProdutoVenda.Quantidade));
-  FQuantidadeVenda := Value;
+
 end;
 
 end.

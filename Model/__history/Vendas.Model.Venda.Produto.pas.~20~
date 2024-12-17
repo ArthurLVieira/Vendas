@@ -8,14 +8,15 @@ type
 
   TModelVendaProduto = class(TInterfacedObject, iProdutoVenda)
   private
-    Flista: TList<iProduto>;
     FProdutoVenda: iProduto;
+    FPrecoVenda: Currency;
+    FQuantidade: Double;
   public
     constructor Create;
     destructor Destroy; override;
     class function New: iProdutoVenda;
-    function Add(Value: iProduto): iProdutoVenda;
-    function ProdutoVenda: TDictionary<Integer, iProduto>;
+    function SetProduto(Value: iProduto): iProdutoVenda;
+    function GetProduto: iProduto;
     function SetQuantidade(Value: Double): iProdutoVenda;
     function GetQuantidade: Double;
     function SetPrecoVenda(Value: Currency): iProdutoVenda;
@@ -31,18 +32,50 @@ uses
 
 constructor TModelVendaProduto.Create;
 begin
-  Flista := TList<iProduto>.Create;
+  FPrecoVenda := FProdutoVenda.Preco;
+  if FProdutoVenda.Quantidade <= 0 then
+    raise Exception.Create('Produto sem estoque!');
+  FQuantidade := 1;
 end;
 
 destructor TModelVendaProduto.Destroy;
 begin
-  freeandnil
   inherited;
+end;
+
+function TModelVendaProduto.GetPrecoVenda: Currency;
+begin
+  Result := FPrecoVenda;
+end;
+
+function TModelVendaProduto.GetProduto: iProduto;
+begin
+
+end;
+
+function TModelVendaProduto.GetQuantidade: Double;
+begin
+
 end;
 
 class function TModelVendaProduto.New: iProdutoVenda;
 begin
   Result := Self.Create;
+end;
+
+function TModelVendaProduto.SetPrecoVenda(Value: Currency): iProdutoVenda;
+begin
+
+end;
+
+function TModelVendaProduto.SetProduto(Value: iProduto): iProdutoVenda;
+begin
+
+end;
+
+function TModelVendaProduto.SetQuantidade(Value: Double): iProdutoVenda;
+begin
+
 end;
 
 end.
