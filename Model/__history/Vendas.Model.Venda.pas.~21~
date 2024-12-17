@@ -17,7 +17,7 @@ type
     function Add(Value: iProdutoVenda): iVenda;
     function Itens: TDictionary<Integer, iProdutoVenda>;
     function Remove(Value: Integer): iVenda;
-    function Editar(Value: Integer): iProdutoVenda;
+    function Editar(Value: Integer): iVenda;
     function Clonar(Value: Integer): iVenda;
     function Cancelar: iVenda;
   end;
@@ -39,17 +39,6 @@ begin
   FLista.Add((LastKey + 1), FProduto);
 end;
 
-function TModelVenda.Cancelar: iVenda;
-begin
-  Result := Self;
-  FLista.Clear;
-end;
-
-function TModelVenda.Clonar(Value: Integer): iVenda;
-begin
-
-end;
-
 constructor TModelVenda.Create;
 begin
   FLista := TDictionary<Integer, iProdutoVenda>.Create;
@@ -60,12 +49,6 @@ begin
   FreeAndNil(FLista);
 
   inherited;
-end;
-
-function TModelVenda.Editar(Value: Integer): iProdutoVenda;
-begin
-  if not FLista.TryGetValue(Value, Result) then
-    raise Exception.Create('Item não localizada!');
 end;
 
 function TModelVenda.Itens: TDictionary<Integer, iProdutoVenda>;

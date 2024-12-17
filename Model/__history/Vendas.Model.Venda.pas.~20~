@@ -1,0 +1,122 @@
+unit Vendas.Model.Venda;
+
+interface
+
+uses Vendas.Model.Interfaces, System.Generics.Collections;
+
+type
+
+  TModelVenda = class(TInterfacedObject, iProdutoVenda)
+  private
+    FLista: TDictionary<Integer, iProduto>;
+    FProduto: iProduto;
+    FQuantidade: Double;
+    FPrecoVenda: Currency;
+    procedure VerificaProdutoNaVenda;
+  public
+    constructor Create;
+    destructor Destroy; override;
+    class function New: iProdutoVenda;
+    function Add(Value: iProduto): iProdutoVenda;
+    function Remove(Value: Integer): iProdutoVenda;
+    function Itens: TDictionary<Integer, iProduto>;
+    function SetQuantidade(Value: Double): iProdutoVenda;
+    function GetQuantidade: Double;
+    function SetPrecoVenda(Value: Currency): iProdutoVenda;
+    function GetPrecoVenda: Currency;
+  end;
+
+implementation
+
+uses
+  System.SysUtils;
+
+{ TModelVenda }
+
+function TModelVenda.Add(Value: iProduto): iProdutoVenda;
+var
+  LastKey: Integer;
+begin
+  Result := Self;
+  FProduto := Value;
+  LastKey := FLista.Keys.ToArray[High(FLista.Keys.ToArray)];
+  FLista.Add((LastKey + 1), FProduto);
+end;
+
+constructor TModelVenda.Create;
+begin
+  FLista := TDictionary<Integer, iProduto>.Create;
+end;
+
+destructor TModelVenda.Destroy;
+begin
+  FreeAndNil(FLista);
+
+  inherited;
+end;
+
+function TModelVenda.GetPrecoVenda: Currency;
+begin
+  Result := FPrecoVenda;
+end;
+
+function TModelVenda.GetQuantidade: Double;
+begin
+  Result := FQuantidade;
+end;
+
+function TModelVenda.Itens: TDictionary<Integer, iProduto>;
+begin
+  Result := FLista;
+end;
+
+class function TModelVenda.New: iProdutoVenda;
+begin
+  Result := Self.Create;
+end;
+
+function TModelVenda.Remove(Value: Integer): iProdutoVenda;
+begin
+  Result := Self;
+  try
+    FLista.Remove(Value);
+  except
+    raise Exception.Create('Item não localizado!');
+  end;
+end;
+
+function TModelVenda.SetPrecoVenda(Value: Currency): iProdutoVenda;
+begin
+  Result := Self;
+  if Value.ToString <> '' then
+  begin
+    FPrecoVenda := Value
+  end
+  else
+    FPrecoVenda := FProduto.GetPreco;
+end;
+
+function TModelVenda.SetQuantidade(Value: Double): iProdutoVenda;
+begin
+  Result := Self;
+  VerificaProdutoNaVenda;
+  if Value.ToString <> '' then
+  begin
+    if Value <= FProduto.GetQuantidade then
+    begin
+      FQuantidade := Value;
+    end
+    else
+      raise Exception.Create('Quantidade insdisponivel no estoque!');
+  end
+  else
+    FQuantidade := 1;
+end;
+
+procedure TModelVenda.VerificaProdutoNaVenda;
+begin
+  if not Assigned(FProduto) then
+    raise Exception.Create('Venda sem Produto!');
+end;
+
+end.

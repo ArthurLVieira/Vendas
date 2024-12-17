@@ -48,9 +48,8 @@ type
   iVenda = interface
     ['{76D64B58-235E-471D-9E70-E85267355D06}']
     function Add(Value: iProdutoVenda): iVenda;
-    function Itens: TDictionary<Integer, iProdutoVenda>;
     function Remove(Value: Integer): iVenda;
-    function Editar(Value: Integer): iProdutoVenda;
+    function Editar(Value: Integer): iVenda;
     function Clonar(Value: Integer): iVenda;
     function Cancelar: iVenda;
   end;

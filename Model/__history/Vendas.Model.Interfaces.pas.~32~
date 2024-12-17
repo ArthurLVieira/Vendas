@@ -50,7 +50,7 @@ type
     function Add(Value: iProdutoVenda): iVenda;
     function Itens: TDictionary<Integer, iProdutoVenda>;
     function Remove(Value: Integer): iVenda;
-    function Editar(Value: Integer): iProdutoVenda;
+    function Editar(Value: Integer): iVenda;
     function Clonar(Value: Integer): iVenda;
     function Cancelar: iVenda;
   end;
