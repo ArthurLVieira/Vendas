@@ -25,7 +25,7 @@ type
 implementation
 
 uses
-  System.SysUtils;
+  System.SysUtils, Vendas.Model.Venda.Produto;
 
 { TModelVenda }
 
@@ -46,8 +46,24 @@ begin
 end;
 
 function TModelVenda.Clonar(Value: Integer): iVenda;
+var
+  ProdutoVenda: iProdutoVenda;
+  Clone: iProdutoVenda;
 begin
-
+  Result := Self;
+  try
+    FLista.TryGetValue(Value, ProdutoVenda);
+    try
+      Clone := TModelVendaProduto.New;
+      Clone.SetProduto(ProdutoVenda.GetProduto);
+      Clone.SetQuantidade(ProdutoVenda.GetQuantidade);
+      Clone.SetPrecoVenda(ProdutoVenda.GetPrecoVenda);
+    finally
+       Self.Add(Clone);
+    end;
+  except
+    raise Exception.Create('Item não localizado!');
+  end;
 end;
 
 constructor TModelVenda.Create;
